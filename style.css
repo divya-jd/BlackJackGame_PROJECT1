@@ -1,0 +1,364 @@
+body {
+    background: #121212;
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+}
+
+.index-page,.game-container, .win-page{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transition: transform 1s ease;
+}
+
+.game-container, .win-page{
+    transform: translateY(100vh);
+}
+
+#game-page:checked ~ .index-page {
+    transform: translateY(-100vh);
+}
+
+#game-page:checked ~ .game-container {
+    transform: translateY(0);
+}
+
+#win-page:checked ~ .game-container {
+    transform: translateY(-100vh);
+}
+
+.index-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+}
+
+.index-page h1 {
+    font-size: 3em; 
+    margin-bottom: 20px;
+}
+
+.index-page p {
+    font-size: 1.2em; 
+    margin-bottom: 30px;
+}
+
+
+.game-container {
+    text-align: center;
+    z-index: 2;
+}
+
+.coin-balance {
+    font-size: 1.2em; 
+    margin-bottom: 10px;
+}
+
+.chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.chip {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    margin: 3px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: red;
+    box-shadow: inset 0 0 0 4px white, 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+.betting-options {
+    margin-bottom: 15px;
+}
+
+.betting-options p {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.bet-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.bet-buttons .chip:active {
+    transform: scale(1.02);
+}
+
+
+.table {
+    background: radial-gradient(circle at center, #90d80b, #45b2e9);
+    padding: 15px; 
+    border-radius: 8px; 
+    border: 3px solid #FFD700; 
+    position: relative;
+    margin: 0 auto;
+    max-width: 600px;
+    height: 300px; 
+}
+
+.player, .dealer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hand {
+    display: flex;
+}
+
+.player-name, .dealer-name {
+    font-size: 1.2em; 
+    margin-bottom: 8px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 4px 8px; 
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+.dealer {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.player-1 {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.player-2 {
+    bottom: 10px;
+    left: 20%;
+}
+
+
+.player-3 {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.player-4 {
+    bottom: 10px;
+    right: 20%;
+}
+
+.card {
+    width: 60px; 
+    height: 90px; 
+    margin: 0 8px; 
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); 
+}
+
+.card::before,
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    backface-visibility: hidden;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2); 
+}
+
+.card::before {
+    background: url('card-back.png') no-repeat center/cover;
+}
+
+.card::after {
+    background: url('card-front-2.png') no-repeat center/cover;
+    transform: rotateY(180deg);
+}
+
+.extra-card {
+    display: none;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+#hit-card-1:checked ~ .game-container .player-1 .extra-card {
+    display: inline-block;
+    animation: dealCard 0.5s forwards;
+    transform: rotateY(180deg);
+}
+
+.card:hover {
+    transform: rotateY(180deg) scale(1.05); 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.controls {
+    margin-top: 20px; 
+    display: flex;
+    justify-content: center;
+}
+
+.controls label {
+    margin: 0 8px; 
+    cursor: pointer;
+}
+
+.controls span {
+    display: inline-block;
+    padding: 8px 14px; 
+    background: linear-gradient(to bottom, #FFD700, #FFA500);
+    color: black;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.1s;
+}
+
+.back-button {
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.back-button span {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(to bottom, #FFD700, #FFA500);
+    color: black;
+    border-radius: 5px;
+    font-size: 1.2em; 
+    transition: background 0.3s, transform 0.1s;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.back-button span:hover {
+    background: linear-gradient(to bottom, #FFA500, #FF8C00);
+}
+
+.back-button span:active {
+    transform: scale(0.95);
+}
+
+@keyframes dealCard {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+.win-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+.win-message {
+    font-size: 2.5em; 
+    color: #FFD700;
+    text-shadow: 2px 2px #000;
+    margin-bottom: 30px;
+}
+
+
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 215, 0, 0.8);
+    top: -10px;
+    animation: fall 3s linear infinite;
+    opacity: 0.8;
+}
+
+.confetti:nth-child(odd) { background: rgba(255, 69, 0, 0.8); }  
+.confetti:nth-child(3n) { background: rgba(0, 191, 255, 0.8); }  
+.confetti:nth-child(4n) { background: rgba(50, 205, 50, 0.8); }  
+.confetti:nth-child(5n) { background: rgba(238, 130, 238, 0.8); } 
+
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+.confetti:nth-child(1) { left: 10%; animation-duration: 3s; }
+.confetti:nth-child(2) { left: 25%; animation-duration: 4s; }
+.confetti:nth-child(3) { left: 40%; animation-duration: 2.5s; }
+.confetti:nth-child(4) { left: 55%; animation-duration: 3.5s; }
+.confetti:nth-child(5) { left: 70%; animation-duration: 4s; }
+.confetti:nth-child(6) { left: 85%; animation-duration: 3s; }
+.confetti:nth-child(7) { left: 15%; animation-duration: 4.5s; }
+.confetti:nth-child(8) { left: 30%; animation-duration: 3s; }
+.confetti:nth-child(9) { left: 60%; animation-duration: 2.5s; }
+.confetti:nth-child(10) { left: 90%; animation-duration: 3.5s; }
+
+@media (max-width: 600px) {
+    .card {
+        width: 50px; 
+        height: 75px;
+    }
+
+    .controls span,
+    .back-button span,
+    .bet-buttons .chip {
+        padding: 6px 12px; 
+        font-size: 12px; 
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .chip {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8em;
+    }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Blackjack Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <input type="radio" name="page" id="index-page" style="display: none;" checked />
+  <input type="radio" name="page" id="game-page" style="display: none;" />
+  <input type="radio" name="page" id="win-page" style="display: none;" />
+
+
+  <input type="checkbox" id="hit-card-1" style="display: none;" />
+  <input type="checkbox" id="stand-button" style="display: none;" />
+
+
+  <div class="index-page">
+    <h1>Welcome to Blackjack!!</h1>
+    <p>Are you ready to test your luck?</p>
+
+    <label for="game-page" class="play-button" onclick="document.getElementById('reset-win').checked=false; document.getElementById('win-test').checked=false;">
+        <span>Start Game</span>
+      </label>
+  </div>
+
+  <div class="game-container">
+
+    <div class="coin-balance">
+      <p>Coins:</p>
+      <div class="chip-container">
+        <div class="chip red-chip">100</div>
+        <div class="chip red-chip">100</div>
+        <div class="chip red-chip">100</div>
+        <div class="chip red-chip">100</div>
+        <div class="chip red-chip">100</div>
+      </div>
+    </div>
+
+
+    <div class="betting-options">
+      <p>Place Bet:</p>
+      <div class="bet-buttons">
+        <label for="bet-50">
+          <div class="chip blue-chip">50</div>
+        </label>
+        <label for="bet-100">
+          <div class="chip green-chip">100</div>
+        </label>
+        <label for="bet-200">
+          <div class="chip black-chip">200</div>
+        </label>
+      </div>
+    </div>
+  
+ 
+  <div class="table">
+   
+    <div class="dealer">
+      <p class="dealer-name">Dealer</p>
+      <div class="hand">
+        <div class="card card-front"></div>
+        <div class="card card-front"></div>
+        <div class="card card-front"></div>
+      </div>
+    </div>
+
+    
+   <div class="controls">
+
+    <label for="hit-card-1">
+      <span>Hit</span>
+    </label>
+
+    <label for="stand-button">
+      <span>Stand</span>
+    </label>
+  </div>
+
+  <div class="win-checkbox">
+    <label for="win-test">
+      <span>Check to Simulate Win</span>
+    </label>
+  </div>
+</div>
+
+
+
+<style>
+  #win-test:checked ~ .game-container {
+    transform: translateY(-100vh);
+  }
+
+  #win-test:checked ~ .win-page {
+    transform: translateY(0);
+  }
+
+  #reset-win:checked ~ #win-test {
+    display: none; 
+  }
+
+  #reset-win:checked ~ .index-page {
+    transform: translateY(0); 
+  }
+
+  #reset-win:checked ~ .game-container {
+    transform: translateY(100vh);
+  }
+
+  #reset-win:checked ~ .win-page {
+    transform: translateY(100vh); 
+  }
+</style>
+
+  
+</body>
+</html>
